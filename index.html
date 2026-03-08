@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>4x6 3x2 Photo Print Generator</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main>
+      <h1>4x6 (3x2) Print Generator</h1>
+      <p>Upload a photo and produce a 4×6 sheet containing six 2×2 photos (3 columns × 2 rows).</p>
+
+      <div class="controls">
+        <input id="fileInput" type="file" accept="image/*">
+        <button id="downloadBtn" disabled>Download 4x6 JPEG</button>
+      </div>
+
+      <div class="canvas-wrap">
+        <canvas id="printCanvas" width="1800" height="1200"></canvas>
+      </div>
+
+      <!-- Crop modal -->
+      <div id="cropModal" class="modal" aria-hidden="true">
+        <div class="modal-content">
+          <h3>Crop to Square</h3>
+          <div class="crop-area">
+            <canvas id="cropCanvas" width="800" height="800"></canvas>
+            <div class="handle handle-tl" data-corner="tl" aria-hidden="false"></div>
+            <div class="handle handle-tr" data-corner="tr" aria-hidden="false"></div>
+            <div class="handle handle-bl" data-corner="bl" aria-hidden="false"></div>
+            <div class="handle handle-br" data-corner="br" aria-hidden="false"></div>
+          </div>
+          <div class="crop-controls">
+            <label>Zoom <input id="zoomRange" type="range" min="0.5" max="3" step="0.01" value="1"></label>
+            <button id="applyCropBtn">Apply Crop</button>
+            <button id="cancelCropBtn">Cancel</button>
+          </div>
+          <p class="small">Drag the image to reposition. Use the slider, mouse wheel, or corner handles to resize.</p>
+        </div>
+      </div>
+
+      <section class="notes">
+        <h2>Print Tips</h2>
+        <ul>
+          <li>This canvas is 4×6 inches at 300 DPI (1200×1800 px). For best results, print at 300 DPI.</li>
+          <li>The photos are cropped to square and scaled to fill each 2×2 inch cell.</li>
+          <li>Use the download button to save a high-resolution JPEG suitable for printing.</li>
+        </ul>
+      </section>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
