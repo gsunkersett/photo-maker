@@ -8,13 +8,23 @@
   </head>
   <body>
     <main>
-      <h1>4x6 (3x2) Print Generator</h1>
-      <p>Upload a photo and produce a 4×6 sheet containing six 2×2 photos (3 columns × 2 rows).</p>
-
-      <div class="controls">
-        <input id="fileInput" type="file" accept="image/*">
-        <button id="downloadBtn" disabled>Download 4x6 JPEG</button>
-      </div>
+      <header class="hero">
+        <div>
+          <h1>4×6 Print — 3×2 Layout</h1>
+          <p class="lead">Upload a photo and produce a 4×6 sheet with six prints arranged in 3 columns × 2 rows.</p>
+        </div>
+        <div class="controls">
+          <label class="file-btn">
+            <input id="fileInput" type="file" accept="image/*">
+            Choose Photo
+          </label>
+          <div class="action-buttons">
+            <button id="downloadBtn" disabled>Download 4×6 JPEG</button>
+            <button id="resetBtn" disabled>Start Over</button>
+          </div>
+        </div>
+        <p class="local-note"><strong>Privacy:</strong> Your photo never leaves your browser — all processing is done locally on your device.</p>
+      </header>
 
       <div class="canvas-wrap">
         <canvas id="printCanvas" width="1800" height="1200"></canvas>

@@ -23,6 +23,7 @@ const cropCtx = cropCanvas.getContext('2d');
 const zoomRange = document.getElementById('zoomRange');
 const applyCropBtn = document.getElementById('applyCropBtn');
 const cancelCropBtn = document.getElementById('cancelCropBtn');
+const resetBtn = document.getElementById('resetBtn');
 
 let activeImage = null; // original Image
 let croppedImage = null; // result Image after cropping
@@ -61,6 +62,7 @@ fileInput.addEventListener('change', handleFile, false);
 downloadBtn.addEventListener('click', downloadImage, false);
 applyCropBtn.addEventListener('click', applyCrop, false);
 cancelCropBtn.addEventListener('click', cancelCrop, false);
+resetBtn.addEventListener('click', startOver, false);
 zoomRange.addEventListener('input', ()=>{ imgState.zoom = parseFloat(zoomRange.value); imgState.scale = imgState.scaleBase * imgState.zoom; renderCrop(); });
 
 cropCanvas.addEventListener('pointerdown', (e)=>{
@@ -138,6 +140,8 @@ function handleFile(e){
     activeImage = img;
     URL.revokeObjectURL(url);
     openCropper(img);
+    // enable reset while editing
+    resetBtn.disabled = false;
   };
   img.src = url;
 }
@@ -210,6 +214,7 @@ function applyCrop(){
     cropModal.setAttribute('aria-hidden','true');
     generateGrid(croppedImage);
     downloadBtn.disabled = false;
+    resetBtn.disabled = false;
   };
   newImg.src = dataUrl;
 }
@@ -220,6 +225,7 @@ function cancelCrop(){
   if(activeImage){
     generateGrid(activeImage);
     downloadBtn.disabled = false;
+    resetBtn.disabled = false;
   }
 }
 
@@ -261,8 +267,27 @@ function generateGrid(img){
       }
 
       ctx.drawImage(img, srcX, srcY, srcW, srcH, dx, dy, CELL_W, CELL_H);
+      // enable reset when there is a generated result
+      resetBtn.disabled = false;
     }
   }
+}
+
+function startOver(){
+  // clear main canvas and reset in-memory state
+  clearCanvas();
+  // clear crop preview
+  cropCtx.clearRect(0,0,CROP_VIEW,CROP_VIEW);
+  // reset inputs and flags
+  fileInput.value = '';
+  activeImage = null;
+  croppedImage = null;
+  downloadBtn.disabled = true;
+  resetBtn.disabled = true;
+  cropModal.setAttribute('aria-hidden','true');
+  // reset imgState
+  imgState = { scaleBase:1, zoom:1, scale:1, x:0, y:0, dragging:false, lastX:0, lastY:0 };
+  zoomRange.value = '1';
 }
 
 function downloadImage(){
