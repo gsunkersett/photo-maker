@@ -1,13 +1,12 @@
+.root-vars{display:none}
+/* Root variables and core layout */
 :root{
-  --bg: #f7f7fb;
-  --card:#fff;
-  --accent:#1e88e5;
-}
   --bg: linear-gradient(180deg,#f5f7fb 0%, #eef3fb 100%);
   --card:#ffffff;
   --accent:#0066ff;
   --muted:#7b8794;
-h1{margin:0 0 6px;font-size:20px}
+}
+
 html,body{height:100%;}
 body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;background:var(--bg);color:#0f1720}
 main{max-width:980px;margin:36px auto;padding:28px;background:var(--card);border-radius:14px;box-shadow:0 12px 40px rgba(12,18,30,0.08)}
@@ -28,6 +27,10 @@ canvas{max-width:100%;height:auto;border-radius:6px;border:1px solid #e6eefc;bac
 ul{margin:6px 0 0 18px}
 
 .local-note{margin-top:8px;color:var(--muted);font-size:13px}
+
+/* Modal centered over viewport */
+.modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(10,12,20,0.45);z-index:60}
+.modal[aria-hidden="true"]{display:none}
 .modal[aria-hidden="true"]{display:none}
 .modal-content{background:#fff;padding:16px;border-radius:10px;max-width:880px;width:92%;box-shadow:0 12px 30px rgba(10,10,30,0.25);text-align:center}
 #cropCanvas{width:100%;max-width:800px;height:auto;border:4px solid #fff;box-shadow:0 6px 20px rgba(10,20,40,0.08);background:#222}
