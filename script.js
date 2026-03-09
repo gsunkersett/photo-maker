@@ -220,13 +220,8 @@ function applyCrop(){
 }
 
 function cancelCrop(){
+  // Close crop modal and do NOT modify the main canvas
   cropModal.setAttribute('aria-hidden','true');
-  // if user cancels, generate grid with original image (center-cropped)
-  if(activeImage){
-    generateGrid(activeImage);
-    downloadBtn.disabled = false;
-    resetBtn.disabled = false;
-  }
 }
 
 function generateGrid(img){

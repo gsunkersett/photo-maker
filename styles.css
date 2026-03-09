@@ -16,4 +16,12 @@ canvas { image-rendering: -webkit-optimize-contrast; }
 /* Keep file input accessible but visually hidden when styled by label */
 input[type="file"] { display: none; }
 
+/* Crop area handles & overlay */
+.crop-area{position:relative;display:inline-block}
+.handle{position:absolute;width:18px;height:18px;background:#fff;border:2px solid rgba(10,10,30,0.2);border-radius:3px;box-shadow:0 4px 10px rgba(0,0,0,0.12);touch-action:none;z-index:10}
+.handle-tl{left:6px;top:6px;cursor:nwse-resize}
+.handle-tr{right:6px;top:6px;cursor:nesw-resize}
+.handle-bl{left:6px;bottom:6px;cursor:nesw-resize}
+.handle-br{right:6px;bottom:6px;cursor:nwse-resize}
+
 

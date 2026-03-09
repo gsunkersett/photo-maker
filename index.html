@@ -27,7 +27,7 @@
         <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3">
           <label class="inline-flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-lg shadow-sm cursor-pointer hover:shadow-md">
             <input id="fileInput" type="file" accept="image/*" class="hidden">
-            <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16v-4a4 4 0 018 0v4m-4 4v-4"></path></svg>
+            <svg class="w-8 h-8 md:w-10 md:h-10 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16v-4a4 4 0 018 0v4m-4 4v-4"></path></svg>
             <span class="text-sm font-medium text-accent">Choose Photo</span>
           </label>
 
@@ -48,14 +48,12 @@
       <div id="cropModal" aria-hidden="true" class="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
         <div class="bg-white rounded-xl p-6 w-[92%] max-w-3xl shadow-2xl text-center">
           <h3 class="text-lg font-medium">Crop to Square</h3>
-          <div class="mt-4 inline-block">
+          <div class="mt-4 inline-block crop-area">
             <canvas id="cropCanvas" width="800" height="800" class="w-full max-w-[800px] h-auto rounded-md bg-slate-800"></canvas>
-            <div class="hidden">
-              <div class="handle handle-tl" data-corner="tl"></div>
-              <div class="handle handle-tr" data-corner="tr"></div>
-              <div class="handle handle-bl" data-corner="bl"></div>
-              <div class="handle handle-br" data-corner="br"></div>
-            </div>
+            <div class="handle handle-tl" data-corner="tl" aria-hidden="false"></div>
+            <div class="handle handle-tr" data-corner="tr" aria-hidden="false"></div>
+            <div class="handle handle-bl" data-corner="bl" aria-hidden="false"></div>
+            <div class="handle handle-br" data-corner="br" aria-hidden="false"></div>
           </div>
           <div class="mt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
             <label class="text-sm">Zoom <input id="zoomRange" type="range" min="0.5" max="3" step="0.01" value="1" class="ml-2"></label>
